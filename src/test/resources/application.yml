@@ -1,0 +1,7 @@
+hr:
+  kbratko:
+    cookmate:
+      security:
+        jwt:
+          validity-duration-in-ms: 86400000 # 1 day
+          secret: test-secret

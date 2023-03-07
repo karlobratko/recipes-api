@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "hr.kbratko.cookmate.security.jwt.validity-duration-in-ms",
+      "type": "java.lang.String",
+      "description": "Validity duration of JWT token in milliseconds."
+    },
+    {
+      "name": "hr.kbratko.cookmate.security.jwt.secret",
+      "type": "java.lang.String",
+      "description": "JWT secret."
+    }
+  ] }
