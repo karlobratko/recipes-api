@@ -12,7 +12,7 @@ public record CreateRecipeRequestDto(
   @Size(min = 5, max = 250, message = "Recipe title must be between 5 and 250 characters long.")
   String title,
   @NotNull(message = "Recipe source is a mandatory field.")
-  @Size(min = 5, max = 250, message = "Recipe source must be between 5 and 250 characters long.")
+  @Size(min = 5, max = 100, message = "Recipe source must be between 5 and 100 characters long.")
   String source,
   @NotNull(message = "Recipe url is a mandatory field.")
   @Size(max = 2048, message = "Recipe source must not exceed 2048 characters.")

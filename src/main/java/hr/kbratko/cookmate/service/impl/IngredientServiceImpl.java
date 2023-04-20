@@ -11,6 +11,8 @@ import hr.kbratko.cookmate.service.IngredientService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import lombok.val;
@@ -73,10 +75,10 @@ public class IngredientServiceImpl implements IngredientService {
     ingredientRepository.delete(ingredient);
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String ingredientNotFoundMessageFormat = "Couldn't find ingredient with id %d.";
+    public static final String ingredientNotFoundMessageFormat = "Couldn't find ingredient with id %d.";
 
   }
 

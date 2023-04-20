@@ -24,14 +24,13 @@ import lombok.experimental.UtilityClass;
 @Setter
 @EqualsAndHashCode(doNotUseGetters = true, onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(doNotUseGetters = true)
-@FieldNameConstants
 public class Privilege extends Identifiable<Long> {
 
   @Column(length = 50, nullable = false, unique = true)
   @EqualsAndHashCode.Include
   private String name;
 
-  @ManyToMany(mappedBy = Role.Fields.privileges)
+  @ManyToMany(mappedBy = "privileges")
   @ToString.Exclude
   private Set<Role> roles;
 
@@ -42,12 +41,12 @@ public class Privilege extends Identifiable<Long> {
     this.roles = roles;
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String tableName = "privileges";
+    public static final String tableName = "privileges";
 
-    public final String joinColumnName = "privilege_id";
+    public static final String joinColumnName = "privilege_id";
 
   }
 

@@ -16,10 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
-import lombok.Singular;
 import lombok.ToString;
-import lombok.experimental.FieldNameConstants;
-import lombok.experimental.UtilityClass;
 
 @Entity
 @Table(name = DietLabel.Constants.tableName)
@@ -29,14 +26,13 @@ import lombok.experimental.UtilityClass;
 @Setter
 @EqualsAndHashCode(doNotUseGetters = true, onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(doNotUseGetters = true)
-@FieldNameConstants
 public class DietLabel extends Auditable<Long> {
 
   @Column(length = 100, nullable = false, unique = true)
   @EqualsAndHashCode.Include
   private @NonNull String name;
 
-  @ManyToMany(mappedBy = Recipe.Fields.dietLabels)
+  @ManyToMany(mappedBy = "dietLabels")
   @ToString.Exclude
   private Set<Recipe> recipes;
 
@@ -47,12 +43,12 @@ public class DietLabel extends Auditable<Long> {
     this.recipes = Objects.requireNonNullElse(recipes, new HashSet<>());
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String tableName = "diet_labels";
+    public static final String tableName = "diet_labels";
 
-    public final String joinColumnName = "diet_label_id";
+    public static final String joinColumnName = "diet_label_id";
 
   }
 

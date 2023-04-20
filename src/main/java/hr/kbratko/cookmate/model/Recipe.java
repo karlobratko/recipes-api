@@ -8,13 +8,13 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.FieldNameConstants;
 import lombok.experimental.UtilityClass;
 
 @Entity
@@ -33,7 +32,6 @@ import lombok.experimental.UtilityClass;
 @Setter
 @EqualsAndHashCode(doNotUseGetters = true, onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(doNotUseGetters = true)
-@FieldNameConstants
 public class Recipe extends Auditable<Long> {
 
   @Column(length = Constants.titleColumnLength, nullable = false)
@@ -78,12 +76,12 @@ public class Recipe extends Auditable<Long> {
   @ToString.Exclude
   private Set<Caution> cautions;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = Ingredient.Fields.recipe)
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
   @ToString.Exclude
   private Set<Ingredient> ingredients;
 
   @lombok.Builder(builderClassName = "Builder")
-  public Recipe(Long id, UUID uuid, LocalDate createdDate, LocalDate lastModifiedDate, @NotNull String title, @NonNull String source, @NonNull String url, @NonNull BigDecimal calories, @NonNull BigDecimal prepTime, Set<DietLabel> dietLabels, Set<HealthLabel> healthLabels, Set<Caution> cautions, Set<Ingredient> ingredients) {
+  public Recipe(Long id, UUID uuid, LocalDate createdDate, LocalDate lastModifiedDate, @NonNull String title, @NonNull String source, @NonNull String url, @NonNull BigDecimal calories, @NonNull BigDecimal prepTime, Set<DietLabel> dietLabels, Set<HealthLabel> healthLabels, Set<Caution> cautions, Set<Ingredient> ingredients) {
     super(id, uuid, createdDate, lastModifiedDate);
     this.title = title;
     this.source = source;
@@ -96,24 +94,24 @@ public class Recipe extends Auditable<Long> {
     this.ingredients = Objects.requireNonNullElse(ingredients, new HashSet<>());
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String tableName = "recipes";
+    public static final String tableName = "recipes";
 
-    public final String joinColumnName = "recipe_id";
+    public static final String joinColumnName = "recipe_id";
 
-    public final String dietLabelJoinTableName = tableName + "_" + DietLabel.Constants.tableName;
+    public static final String dietLabelJoinTableName = tableName + "_" + DietLabel.Constants.tableName;
 
-    public final String healthLabelJoinTableName = tableName + "_" + HealthLabel.Constants.tableName;
+    public static final String healthLabelJoinTableName = tableName + "_" + HealthLabel.Constants.tableName;
 
-    public final String cautionJoinTableName = tableName + "_" + Caution.Constants.tableName;
+    public static final String cautionJoinTableName = tableName + "_" + Caution.Constants.tableName;
 
-    public final int sourceColumnLength = 100;
+    public static final int sourceColumnLength = 100;
 
-    public final int urlColumnLength = 2048;
+    public static final int urlColumnLength = 2048;
 
-    public final int titleColumnLength = 250;
+    public static final int titleColumnLength = 250;
 
   }
 

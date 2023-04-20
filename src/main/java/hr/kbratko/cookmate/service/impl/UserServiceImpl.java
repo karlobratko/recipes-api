@@ -13,6 +13,8 @@ import hr.kbratko.cookmate.service.UserService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import lombok.val;
@@ -84,10 +86,10 @@ public class UserServiceImpl implements UserService {
       .toList();
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String userNotFoundMessageFormat = "Couldn't find user with id %d.";
+    public static final String userNotFoundMessageFormat = "Couldn't find user with id %d.";
 
   }
 

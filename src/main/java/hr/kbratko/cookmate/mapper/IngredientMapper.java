@@ -5,6 +5,8 @@ import hr.kbratko.cookmate.exception.NotFoundException;
 import hr.kbratko.cookmate.model.Food;
 import hr.kbratko.cookmate.model.Ingredient;
 import hr.kbratko.cookmate.repository.FoodRepository;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.experimental.UtilityClass;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.InjectionStrategy;
@@ -28,13 +30,13 @@ public abstract class IngredientMapper {
   }
 
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-  @Mapping(source = "foodId", target = Ingredient.Fields.food, qualifiedByName = {"mapFoodIdToFood"})
+  @Mapping(source = "foodId", target = "food", qualifiedByName = {"mapFoodIdToFood"})
   public abstract Ingredient updateIngredientWithUpdateIngredientRequestDto(@MappingTarget Ingredient recipe, UpdateIngredientRequestDto requestDto);
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   class Constants {
 
-    public final String foodNotFoundMessageFormat = "Couldn't find food with id %d.";
+    public static final String foodNotFoundMessageFormat = "Couldn't find food with id %d.";
 
   }
 

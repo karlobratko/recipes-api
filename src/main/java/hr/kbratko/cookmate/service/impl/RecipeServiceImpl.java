@@ -1,6 +1,7 @@
 package hr.kbratko.cookmate.service.impl;
 
 import hr.kbratko.cookmate.dto.request.CreateRecipeRequestDto;
+import hr.kbratko.cookmate.dto.request.CreateRecipeXmlRequestDto;
 import hr.kbratko.cookmate.dto.request.UpdateRecipeRequestDto;
 import hr.kbratko.cookmate.dto.response.CautionResponseDto;
 import hr.kbratko.cookmate.dto.response.DietLabelResponseDto;
@@ -19,11 +20,13 @@ import hr.kbratko.cookmate.service.RecipeService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -64,6 +67,17 @@ public class RecipeServiceImpl implements RecipeService {
   @Transactional
   public RecipeResponseDto createRecipe(CreateRecipeRequestDto requestDto) {
     val recipe = recipeRepository.save(Objects.requireNonNull(conversionService.convert(requestDto, Recipe.class)));
+
+    return conversionService.convert(recipe, RecipeResponseDto.class);
+  }
+
+
+  @Override
+  @Transactional
+  public RecipeResponseDto createRecipeWithXml(MultipartFile file) {
+    val recipe = recipeRepository.save(
+      Objects.requireNonNull(conversionService.convert(conversionService.convert(file, CreateRecipeXmlRequestDto.class), Recipe.class))
+    );
 
     return conversionService.convert(recipe, RecipeResponseDto.class);
   }
@@ -120,10 +134,10 @@ public class RecipeServiceImpl implements RecipeService {
       .toList();
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String recipeNotFoundMessageFormat = "Couldn't find recipe with id %d.";
+    public static final String recipeNotFoundMessageFormat = "Couldn't find recipe with id %d.";
 
   }
 

@@ -11,6 +11,8 @@ import hr.kbratko.cookmate.service.HealthLabelService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import lombok.val;
@@ -73,10 +75,10 @@ public class HealthLabelServiceImpl implements HealthLabelService {
     healthLabelRepository.delete(healthLabel);
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String healthLabelNotFoundMessageFormat = "Couldn't find health label with id %d.";
+    public static final String healthLabelNotFoundMessageFormat = "Couldn't find health label with id %d.";
 
   }
 

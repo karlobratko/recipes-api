@@ -14,6 +14,8 @@ import jakarta.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import lombok.val;
@@ -83,10 +85,10 @@ public class FoodServiceImpl implements FoodService {
       .toList();
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String foodNotFoundMessageFormat = "Couldn't find food with id %d.";
+    public static final String foodNotFoundMessageFormat = "Couldn't find food with id %d.";
 
   }
 

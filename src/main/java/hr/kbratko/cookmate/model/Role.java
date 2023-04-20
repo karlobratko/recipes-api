@@ -7,7 +7,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 import lombok.AccessLevel;
@@ -17,8 +16,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.FieldNameConstants;
-import lombok.experimental.UtilityClass;
 
 @Entity
 @Table(name = Role.Constants.tableName)
@@ -28,14 +25,13 @@ import lombok.experimental.UtilityClass;
 @Setter
 @EqualsAndHashCode(doNotUseGetters = true, onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(doNotUseGetters = true)
-@FieldNameConstants
 public class Role extends Identifiable<Long> {
 
   @Column(length = 50, nullable = false, unique = true)
   @EqualsAndHashCode.Include
   private String name;
 
-  @ManyToMany(mappedBy = User.Fields.roles)
+  @ManyToMany(mappedBy = "roles")
   @ToString.Exclude
   private Set<User> users;
 
@@ -56,14 +52,14 @@ public class Role extends Identifiable<Long> {
     this.privileges = privileges;
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String tableName = "roles";
+    public static final String tableName = "roles";
 
-    public final String joinColumnName = "role_id";
+    public static final String joinColumnName = "role_id";
 
-    public final String privilegeJoinTableName = tableName + "_" + Privilege.Constants.tableName;
+    public static final String privilegeJoinTableName = tableName + "_" + Privilege.Constants.tableName;
 
   }
 

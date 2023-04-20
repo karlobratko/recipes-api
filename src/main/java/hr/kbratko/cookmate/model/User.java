@@ -22,8 +22,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.FieldNameConstants;
-import lombok.experimental.UtilityClass;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,7 +34,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Setter
 @EqualsAndHashCode(doNotUseGetters = true, onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(doNotUseGetters = true)
-@FieldNameConstants
 public class User extends Auditable<Long> implements UserDetails {
 
   @Column(length = Constants.firstNameColumnLength, nullable = false)
@@ -97,7 +94,7 @@ public class User extends Auditable<Long> implements UserDetails {
           .map(privilege -> new SimpleGrantedAuthority(privilege.getName())))
         .collect(Collectors.toSet())
     );
-    
+
     return authorities;
   }
 
@@ -121,22 +118,22 @@ public class User extends Auditable<Long> implements UserDetails {
     return enabled;
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String tableName = "users";
+    public static final String tableName = "users";
 
-    public final String joinColumnName = "user_id";
+    public static final String joinColumnName = "user_id";
 
-    public final String roleJoinTableName = tableName + "_" + Role.Constants.tableName;
+    public static final String roleJoinTableName = tableName + "_" + Role.Constants.tableName;
 
-    public final int firstNameColumnLength = 50;
+    public static final int firstNameColumnLength = 50;
 
-    public final int lastNameColumnLength = 50;
+    public static final int lastNameColumnLength = 50;
 
-    public final int usernameColumnLength = 50;
+    public static final int usernameColumnLength = 50;
 
-    public final int emailColumnLength = 254;
+    public static final int emailColumnLength = 254;
 
   }
 

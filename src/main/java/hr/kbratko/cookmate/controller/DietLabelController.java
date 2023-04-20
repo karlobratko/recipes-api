@@ -8,8 +8,9 @@ import hr.kbratko.cookmate.dto.response.DietLabelResponseDto;
 import hr.kbratko.cookmate.service.DietLabelService;
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -67,20 +68,20 @@ public class DietLabelController {
     return ResponseEntity.noContent().build();
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/diet-labels";
+    public static final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/diet-labels";
 
-    public final String getAllDietLabelsGetMapping = "";
+    public static final String getAllDietLabelsGetMapping = "";
 
-    public final String getDietLabelByIdGetMapping = "/{id}";
+    public static final String getDietLabelByIdGetMapping = "/{id}";
 
-    public final String createDietLabelPostMapping = "";
+    public static final String createDietLabelPostMapping = "";
 
-    public final String updateDietLabelByIdPostMapping = "/{id}";
+    public static final String updateDietLabelByIdPostMapping = "/{id}";
 
-    public final String deleteDietLabelByIdDeleteMapping = "/{id}";
+    public static final String deleteDietLabelByIdDeleteMapping = "/{id}";
 
   }
 

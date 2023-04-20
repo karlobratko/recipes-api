@@ -9,8 +9,9 @@ import hr.kbratko.cookmate.dto.response.FoodResponseDto;
 import hr.kbratko.cookmate.service.FoodService;
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -75,22 +76,22 @@ public class FoodController {
     );
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/foods";
+    public static final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/foods";
 
-    public final String getAllFoodsGetMapping = "";
+    public static final String getAllFoodsGetMapping = "";
 
-    public final String getFoodByIdGetMapping = "/{id}";
+    public static final String getFoodByIdGetMapping = "/{id}";
 
-    public final String createFoodPostMapping = "";
+    public static final String createFoodPostMapping = "";
 
-    public final String updateFoodByIdPostMapping = "/{id}";
+    public static final String updateFoodByIdPostMapping = "/{id}";
 
-    public final String deleteFoodByIdDeleteMapping = "/{id}";
+    public static final String deleteFoodByIdDeleteMapping = "/{id}";
 
-    public final String getAllFoodCategoriesGetMapping = "/categories";
+    public static final String getAllFoodCategoriesGetMapping = "/categories";
 
   }
 

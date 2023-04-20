@@ -28,14 +28,13 @@ import lombok.experimental.UtilityClass;
 @Setter
 @EqualsAndHashCode(doNotUseGetters = true, onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(doNotUseGetters = true)
-@FieldNameConstants
 public class Caution extends Auditable<Long> {
 
   @Column(length = 100, nullable = false, unique = true)
   @EqualsAndHashCode.Include
   private @NonNull String name;
 
-  @ManyToMany(mappedBy = Recipe.Fields.cautions)
+  @ManyToMany(mappedBy = "cautions")
   @ToString.Exclude
   private Set<Recipe> recipes;
 
@@ -46,12 +45,12 @@ public class Caution extends Auditable<Long> {
     this.recipes = Objects.requireNonNullElse(recipes, new HashSet<>());
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String tableName = "cautions";
+    public static final String tableName = "cautions";
 
-    public final String joinColumnName = "caution_id";
+    public static final String joinColumnName = "caution_id";
 
   }
 

@@ -6,6 +6,8 @@ import hr.kbratko.cookmate.model.User;
 import hr.kbratko.cookmate.model.codebook.Roles;
 import hr.kbratko.cookmate.repository.RoleRepository;
 import java.util.Set;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
@@ -33,10 +35,10 @@ public class RegisterRequestDtoToUserConverter implements Converter<RegisterRequ
       .build();
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String roleNotFoundMessageTemplate = "Role %s not found in database.";
+    public static final String roleNotFoundMessageTemplate = "Role %s not found in database.";
 
   }
 

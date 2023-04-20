@@ -11,6 +11,8 @@ import hr.kbratko.cookmate.service.CautionService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import lombok.val;
@@ -73,10 +75,10 @@ public class CautionServiceImpl implements CautionService {
     cautionRepository.delete(caution);
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String cautionNotFoundMessageFormat = "Couldn't find caution with id %d.";
+    public static final String cautionNotFoundMessageFormat = "Couldn't find caution with id %d.";
 
   }
 

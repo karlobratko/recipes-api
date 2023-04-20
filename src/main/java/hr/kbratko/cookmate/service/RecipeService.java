@@ -9,6 +9,7 @@ import hr.kbratko.cookmate.dto.response.IngredientResponseDto;
 import hr.kbratko.cookmate.dto.response.RecipeResponseDto;
 import hr.kbratko.cookmate.model.Caution;
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface RecipeService {
 
@@ -30,4 +31,5 @@ public interface RecipeService {
 
   List<IngredientResponseDto> getAllIngredientsByRecipeId(Long id);
 
+  RecipeResponseDto createRecipeWithXml(MultipartFile file);
 }

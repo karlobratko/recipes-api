@@ -8,6 +8,8 @@ import hr.kbratko.cookmate.dto.response.HealthLabelResponseDto;
 import hr.kbratko.cookmate.service.HealthLabelService;
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpStatus;
@@ -67,20 +69,20 @@ public class HealthLabelController {
     return ResponseEntity.noContent().build();
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/health-labels";
+    public static final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/health-labels";
 
-    public final String getAllHealthLabelsGetMapping = "";
+    public static final String getAllHealthLabelsGetMapping = "";
 
-    public final String getHealthLabelByIdGetMapping = "/{id}";
+    public static final String getHealthLabelByIdGetMapping = "/{id}";
 
-    public final String createHealthLabelPostMapping = "";
+    public static final String createHealthLabelPostMapping = "";
 
-    public final String updateHealthLabelByIdPostMapping = "/{id}";
+    public static final String updateHealthLabelByIdPostMapping = "/{id}";
 
-    public final String deleteHealthLabelByIdDeleteMapping = "/{id}";
+    public static final String deleteHealthLabelByIdDeleteMapping = "/{id}";
 
   }
 

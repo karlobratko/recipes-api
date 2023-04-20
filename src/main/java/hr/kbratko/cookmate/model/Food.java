@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,7 +31,6 @@ import lombok.experimental.UtilityClass;
 @Setter
 @EqualsAndHashCode(doNotUseGetters = true, onlyExplicitlyIncluded = true, callSuper = true)
 @ToString(doNotUseGetters = true)
-@FieldNameConstants
 public class Food extends Auditable<Long> {
 
   @Column(length = 100, nullable = false, unique = true)
@@ -41,7 +41,7 @@ public class Food extends Auditable<Long> {
   @Column(nullable = false)
   private @NonNull FoodCategory category;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = Ingredient.Fields.food)
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "food")
   @ToString.Exclude
   private Set<Ingredient> ingredients;
 
@@ -53,12 +53,12 @@ public class Food extends Auditable<Long> {
     this.ingredients = Objects.requireNonNullElse(ingredients, new HashSet<>());
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String tableName = "foods";
+    public static final String tableName = "foods";
 
-    public final String joinColumnName = "food_id";
+    public static final String joinColumnName = "food_id";
 
   }
 

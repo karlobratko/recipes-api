@@ -2,13 +2,12 @@ package hr.kbratko.cookmate.constants;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.experimental.UtilityClass;
 
-@UtilityClass
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JwtConstants {
 
-  public final String authorizationHeader = "Authorization";
+  public static final String authorizationHeader = "Authorization";
 
-  public final String headerSchema = "Bearer";
+  public static final String headerSchema = "Bearer";
 
 }

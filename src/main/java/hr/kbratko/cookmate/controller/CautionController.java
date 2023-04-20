@@ -8,8 +8,9 @@ import hr.kbratko.cookmate.dto.response.CautionResponseDto;
 import hr.kbratko.cookmate.service.CautionService;
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -67,20 +68,20 @@ public class CautionController {
     return ResponseEntity.noContent().build();
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/cautions";
+    public static final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/cautions";
 
-    public final String getAllCautionsGetMapping = "";
+    public static final String getAllCautionsGetMapping = "";
 
-    public final String getCautionByIdGetMapping = "/{id}";
+    public static final String getCautionByIdGetMapping = "/{id}";
 
-    public final String createCautionPostMapping = "";
+    public static final String createCautionPostMapping = "";
 
-    public final String updateCautionByIdPostMapping = "/{id}";
+    public static final String updateCautionByIdPostMapping = "/{id}";
 
-    public final String deleteCautionByIdDeleteMapping = "/{id}";
+    public static final String deleteCautionByIdDeleteMapping = "/{id}";
 
   }
 

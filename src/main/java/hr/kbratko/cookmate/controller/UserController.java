@@ -9,6 +9,8 @@ import hr.kbratko.cookmate.dto.response.UserResponseDto;
 import hr.kbratko.cookmate.service.UserService;
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpStatus;
@@ -78,22 +80,22 @@ public class UserController {
     );
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String requestMapping = ApplicationConstants.apiUserManagementRequestMapping + "/users";
+    public static final String requestMapping = ApplicationConstants.apiUserManagementRequestMapping + "/users";
 
-    public final String getAllUsersGetMapping = "";
+    public static final String getAllUsersGetMapping = "";
 
-    public final String getUserByIdGetMapping = "/{id}";
+    public static final String getUserByIdGetMapping = "/{id}";
 
-    public final String createUserPostMapping = "";
+    public static final String createUserPostMapping = "";
 
-    public final String updateUserByIdPostMapping = "/{id}";
+    public static final String updateUserByIdPostMapping = "/{id}";
 
-    public final String deleteUserByIdDeleteMapping = "/{id}";
+    public static final String deleteUserByIdDeleteMapping = "/{id}";
 
-    public final String getAllRolesGetMapping = "/roles";
+    public static final String getAllRolesGetMapping = "/roles";
   }
 
 }

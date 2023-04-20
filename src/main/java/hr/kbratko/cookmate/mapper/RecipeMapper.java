@@ -67,10 +67,10 @@ public abstract class RecipeMapper {
   }
 
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-  @Mapping(source = "dietLabels", target = Recipe.Fields.dietLabels, qualifiedByName = {"mapListOfIdsToSetOfDietLabels"})
-  @Mapping(source = "healthLabels", target = Recipe.Fields.healthLabels, qualifiedByName = {"mapListOfIdsToSetOfHealthLabels"})
-  @Mapping(source = "cautions", target = Recipe.Fields.cautions, qualifiedByName = {"mapListOfIdsToSetOfCautions"})
-  @Mapping(source = "ingredients", target = Recipe.Fields.ingredients, qualifiedByName = {"mapListOfIdsToSetOfIngredients"})
+  @Mapping(source = "dietLabels", target = "dietLabels", qualifiedByName = {"mapListOfIdsToSetOfDietLabels"})
+  @Mapping(source = "healthLabels", target = "healthLabels", qualifiedByName = {"mapListOfIdsToSetOfHealthLabels"})
+  @Mapping(source = "cautions", target = "cautions", qualifiedByName = {"mapListOfIdsToSetOfCautions"})
+  @Mapping(source = "ingredients", target = "ingredients", qualifiedByName = {"mapListOfIdsToSetOfIngredients"})
   public abstract Recipe updateRecipeWithUpdateRecipeRequestDto(@MappingTarget Recipe recipe, UpdateRecipeRequestDto requestDto);
 
 }

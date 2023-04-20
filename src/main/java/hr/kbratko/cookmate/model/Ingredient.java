@@ -4,14 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,7 +31,7 @@ import lombok.experimental.UtilityClass;
 @FieldNameConstants
 public class Ingredient extends Auditable<Long> {
 
-  @OneToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER)
   private @NonNull Food food;
 
   @Column(nullable = false)
@@ -54,14 +52,14 @@ public class Ingredient extends Auditable<Long> {
     this.recipe = recipe;
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String tableName = "ingredients";
+    public static final String tableName = "ingredients";
 
-    public final String joinColumnName = "ingredient_id";
+    public static final String joinColumnName = "ingredient_id";
 
-    public final int measureColumnLength = 50;
+    public static final int measureColumnLength = 50;
 
   }
 

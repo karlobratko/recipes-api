@@ -4,6 +4,8 @@ import hr.kbratko.cookmate.dto.request.CreateIngredientRequestDto;
 import hr.kbratko.cookmate.exception.NotFoundException;
 import hr.kbratko.cookmate.model.Ingredient;
 import hr.kbratko.cookmate.repository.FoodRepository;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
@@ -25,10 +27,10 @@ public class CreateIngredientRequestDtoToIngredientConverter implements Converte
       .build();
   }
 
-  @UtilityClass
-  class Constants {
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  static class Constants {
 
-    public final String foodNotFoundMessageFormat = "Couldn't find food with id %d.";
+    public static final String foodNotFoundMessageFormat = "Couldn't find food with id %d.";
 
   }
 

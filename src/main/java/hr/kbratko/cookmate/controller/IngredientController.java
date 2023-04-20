@@ -8,6 +8,8 @@ import hr.kbratko.cookmate.dto.response.IngredientResponseDto;
 import hr.kbratko.cookmate.service.IngredientService;
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpStatus;
@@ -67,20 +69,20 @@ public class IngredientController {
     return ResponseEntity.noContent().build();
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/ingredients";
+    public static final String requestMapping = ApplicationConstants.apiRecipeManagementRequestMapping + "/ingredients";
 
-    public final String getAllIngredientsGetMapping = "";
+    public static final String getAllIngredientsGetMapping = "";
 
-    public final String getIngredientByIdGetMapping = "/{id}";
+    public static final String getIngredientByIdGetMapping = "/{id}";
 
-    public final String createIngredientPostMapping = "";
+    public static final String createIngredientPostMapping = "";
 
-    public final String updateIngredientByIdPostMapping = "/{id}";
+    public static final String updateIngredientByIdPostMapping = "/{id}";
 
-    public final String deleteIngredientByIdDeleteMapping = "/{id}";
+    public static final String deleteIngredientByIdDeleteMapping = "/{id}";
 
   }
 

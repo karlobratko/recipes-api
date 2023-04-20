@@ -2,10 +2,8 @@ package hr.kbratko.cookmate.converter;
 
 import hr.kbratko.cookmate.dto.response.RecipeResponseDto;
 import hr.kbratko.cookmate.model.Recipe;
-import java.util.stream.Collectors;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +27,7 @@ public class RecipeToRecipeResponseDtoConverter implements Converter<Recipe, Rec
       source.getSource(),
       source.getUrl(),
       source.getCalories(),
+      source.getPrepTime(),
       source.getDietLabels().stream().map(dietLabelToDietLabelResponseDtoConverter::convert).toList(),
       source.getHealthLabels().stream().map(healthLabelToHealthLabelDtoConverter::convert).toList(),
       source.getCautions().stream().map(cautionToCautionResponseDtoConverter::convert).toList(),

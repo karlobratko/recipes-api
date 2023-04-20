@@ -48,7 +48,7 @@ public abstract class UserMapper {
   }
 
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-  @Mapping(source = "roles", target = User.Fields.roles, qualifiedByName = {"mapListOfIdsToSetOfRoles"})
+  @Mapping(source = "roles", target = "roles", qualifiedByName = {"mapListOfIdsToSetOfRoles"})
   public abstract User updateUserWithUpdateUserRequestDto(@MappingTarget User recipe, UpdateUserRequestDto requestDto);
 
 }

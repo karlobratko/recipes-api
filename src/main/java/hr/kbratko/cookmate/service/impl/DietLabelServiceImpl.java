@@ -11,6 +11,8 @@ import hr.kbratko.cookmate.repository.DietLabelRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import lombok.val;
@@ -73,10 +75,10 @@ public class DietLabelServiceImpl implements DietLabelService {
     dietLabelRepository.delete(dietLabel);
   }
 
-  @UtilityClass
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Constants {
 
-    public final String dietLabelNotFoundMessageFormat = "Couldn't find diet label with id %d.";
+    public static final String dietLabelNotFoundMessageFormat = "Couldn't find diet label with id %d.";
 
   }
 

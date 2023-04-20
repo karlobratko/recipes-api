@@ -9,6 +9,7 @@ public record RecipeResponseDto(
   String source,
   String url,
   BigDecimal calories,
+  BigDecimal prepTime,
   List<DietLabelResponseDto> dietLabels,
   List<HealthLabelResponseDto> healthLabels,
   List<CautionResponseDto> cautions,
